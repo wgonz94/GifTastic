@@ -112,17 +112,17 @@ function displayTopicGif() {
 function gifMotion() {
 
     // allows precision selection with id for gif state change
-    var choiceId = $(this).attr("id");
-    choiceId = "#" + choiceId
+    var choice = $(this).attr("id");
+    choice = "#" + choice
 
-    var state = $(choiceId).attr("data-state");
+    var state = $(choice).attr("data-state");
     
 
     if (state === "still") {
-      $(this).attr("src", $(choiceId).attr("data-animate"));
+      $(this).attr("src", $(choice).attr("data-animate"));
       $(this).attr("data-state", "animate");
     } else {
-      $(this).attr("src", $(choiceId).attr("data-still"));
+      $(this).attr("src", $(choice).attr("data-still"));
       $(this).attr("data-state", "still");
     }
   };
