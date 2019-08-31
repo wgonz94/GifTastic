@@ -1,5 +1,5 @@
 
-var topics = ["The Office", "Friends", "Marvel's Daredevil", "Parks and Recreation", "Anchorman", "Spider-Man", "The Matrix", "Talladega Nights: The Ballad of Ricky Bobby", "Sherlock Holmes", "StarWars", "Benchwarmers", "Austin Powers", "Limitless"];
+var topics = ["The Office", "Friends", "Marvel's Daredevil", "Parks and Recreation", "Anchorman", "Spider-Man", "The Matrix", "Talladega Nights: The Ballad of Ricky Bobby", "Sherlock Holmes", "StarWars", "Benchwarmers", "Austin Powers", "Semi-Pro", "Step-Brothers", "The Other Guys", "The Avengers", "Napoleon Dynamite", "Zoolander", "Shaun of the Dead", "The Simpsons Movie", "Whose Line Is It Anyway?"];
 
 function createButtons() {
 

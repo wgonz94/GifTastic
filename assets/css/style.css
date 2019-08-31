@@ -37,7 +37,7 @@ img{
 div.movies{
     display: inline-block;
     margin: 5px;
-    border: dotted black 5px;
+    border: solid black 5px;
     
 }
 
