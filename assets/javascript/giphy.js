@@ -1,5 +1,5 @@
 
-var topics = ["George of the Jungle", "Spiderman", "The Dark Knight", "The Mask", "Anchorman", "Blades of Glory", "The Matrix", "Old School", "Sherlock Holmes", "StarWars", "Benchwarmers", "Austin Powers", "Teenage Mutant Ninja Turtles"];
+var topics = ["The Office", "Friends", "Marvel's Daredevil", "Parks and Recreation", "Anchorman", "Spider-Man", "The Matrix", "Talladega Nights: The Ballad of Ricky Bobby", "Sherlock Holmes", "StarWars", "Benchwarmers", "Austin Powers", "Limitless"];
 
 function createButtons() {
 
@@ -68,16 +68,14 @@ function displayTopicGif() {
             console.log(response.data)
             
             var results = response.data;
-        // wouldnt clear after pressing second movie title
-        //update: clearing wrong div.  wrote code to "row" div
-        //update: clearing created buttons. clearing wrong area
-            // $(".row").empty();
+        
+            $("#movieGif").empty();
 
             for(var i = 0; i <results.length; i++){
 
                 //create div for topics/movie title chosen
                 //append rating for chosen movie title/topics
-                var movieTDiv = $("<div>");
+                var movieTDiv = $("<div class='movies'>");
 
                 var rating = response.data[i].rating;
 
@@ -104,8 +102,8 @@ function displayTopicGif() {
                 image.addClass("m-2")
 
                 //append gifs
-                movieTDiv.prepend(image);
-                $("#movieGif").before(movieTDiv);
+                movieTDiv.append(image);
+                $("#movieGif").prepend(movieTDiv);
             }
 
         });
@@ -131,7 +129,7 @@ function gifMotion() {
 
 //add listener for elements with class of "movie" 
 //added listener for elements with class of "gifImages"
-function clearGifdiv();
+
 
 
 
