@@ -51,12 +51,14 @@ function displayTopicGif() {
     // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=zBVYqCxlWQzucELEgm9SniwzfKORwVmQ";
 
     //Need to figure out way to enact response with buttons displayed
-    //update: Created function to generate response!!
-    var name = $(this).attr("data-name");
-
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=zBVYqCxlWQzucELEgm9SniwzfKORwVmQ";
+    //update: Created function to generate response!! 
     
 
+    var name = $(this).attr("data-name");
+
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=zBVYqCxlWQzucELEgm9SniwzfKORwVmQ&limit=10&offset=0&rating=g";
+    
+   
     // Performing AJAX GET request
     $.ajax({
         url: queryURL,
@@ -66,27 +68,73 @@ function displayTopicGif() {
             console.log(response.data)
             
             var results = response.data;
+        // wouldnt clear after pressing second movie title
+        //update: clearing wrong div.  wrote code to "row" div
+        //update: clearing created buttons. clearing wrong area
+            // $(".row").empty();
 
-            
+            for(var i = 0; i <results.length; i++){
+
+                //create div for topics/movie title chosen
+                //append rating for chosen movie title/topics
+                var movieTDiv = $("<div>");
+
+                var rating = response.data[i].rating;
+
+                var pRating = $("<p>").text("Rating: " + rating);
+
+                movieTDiv.append(pRating);
+
+                //pull img gif from data
+
+                var gifStillImage = response.data[i].images.downsized_still.url;
+                var gifMotionImage = response.data[i].images.downsized.url;
+
+                //create img element and add attributes
+
+                var image = $("<img>").attr("src", gifStillImage);
+
+                image.attr("data-still", gifStillImage);
+                image.attr("data-animate", gifMotionImage);
+                image.attr("data-state", "still");
+                image.attr("id", "img" + i);
+
+                //add class
+                image.addClass("gifImages");
+                image.addClass("m-2")
+
+                //append gifs
+                movieTDiv.prepend(image);
+                $("#movieGif").before(movieTDiv);
+            }
 
         });
     }
-// });
-// $(".gif").on("click", function() {
-//     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-//     var state = $(this).attr("data-state");
-//     // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-//     // Then, set the image's data-state to animate
-//     // Else set src to the data-still value
-//     if (state === "still") {
-//       $(this).attr("src", $(this).attr("data-animate"));
-//       $(this).attr("data-state", "animate");
-//     } else {
-//       $(this).attr("src", $(this).attr("data-still"));
-//       $(this).attr("data-state", "still");
-//     }
-//   });
 
-//add listener for elements with class of "movie" *test run*
+function gifMotion() {
+
+    // allows precision selection with id for gif state change
+    var choiceID = $(this).attr("id");
+    choiceID = "#" + choiceID
+
+    var state = $(choiceID).attr("data-state");
+    
+
+    if (state === "still") {
+      $(this).attr("src", $(choiceID).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(choiceID).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  };
+
+//add listener for elements with class of "movie" 
+//added listener for elements with class of "gifImages"
+function clearGifdiv();
+
+
+
 $(document).on("click", ".movie", displayTopicGif);
+$(document).on("click", ".gifImages", gifMotion)
 createButtons()
