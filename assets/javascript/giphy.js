@@ -51,6 +51,7 @@ function displayTopicGif() {
     // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=zBVYqCxlWQzucELEgm9SniwzfKORwVmQ";
 
     //Need to figure out way to enact response with buttons displayed
+    //update: Created function to generate response!!
     var name = $(this).attr("data-name");
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=zBVYqCxlWQzucELEgm9SniwzfKORwVmQ";
@@ -61,8 +62,12 @@ function displayTopicGif() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
+        // able to retrieve data. YES!!
+            console.log(response.data)
+            
+            var results = response.data;
 
-            console.log(response)
+            
 
         });
     }
