@@ -3,16 +3,16 @@ var topics = ["The Office", "Friends", "Marvel's Daredevil", "Parks and Recreati
 
 function createButtons() {
 
-    // Deleting the movies prior to adding new movies
+    // Empties the movies prior to adding new gifs
     // (this is necessary otherwise we will have repeat buttons)
     $("#buttons-view").empty();
 
-    // Looping through the array of movies
+    // Looping through the array of topics(movies/shows)
     for (var i = 0; i < topics.length; i++) {
 
-        // Then dynamicaly generating buttons for each movie in the array
+        // Then dynamicaly generating buttons for each topic in the array
         var button = $("<button>");
-        // Adding multiple classes movie div to button
+        // Adding multiple classes movie div to button (only one class being applied)
         button.addClass("movie");
         // button.addClass("btn-info");
         // button.addClass("m-1");
@@ -37,7 +37,7 @@ $("#addMovie").on("click", function (event) {
     // Adding the movie from the textbox to our array
     topics.push(movie);
 
-    // Calling renderButtons which handles the processing of our movie array
+    //rerun createButtons with new additions to array
     createButtons();
 
 });
