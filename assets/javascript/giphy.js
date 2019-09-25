@@ -135,4 +135,4 @@ function gifMotion() {
 
 $(document).on("click", ".movie", displayTopicGif);
 $(document).on("click", ".gifImages", gifMotion)
-createButtons()
+createButtons();
