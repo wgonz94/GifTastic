@@ -1,5 +1,7 @@
 
-var topics = ["The Office", "Friends", "Marvel's Daredevil", "Parks and Recreation", "Anchorman", "Spider-Man", "The Matrix", "Talladega Nights: The Ballad of Ricky Bobby", "Sherlock Holmes", "StarWars", "Benchwarmers", "Austin Powers", "Semi-Pro", "Step-Brothers", "The Other Guys", "The Avengers", "Napoleon Dynamite", "Zoolander", "Shaun of the Dead", "The Simpsons Movie", "Whose Line Is It Anyway?"];
+var topics = ["The Office", "Friends", "Marvel's Daredevil", "Parks and Recreation", "Anchorman","The Matrix", "Talladega Nights: The Ballad of Ricky Bobby", "Sherlock Holmes", "Star Wars", "Benchwarmers", "Austin Powers","Step-Brothers", "The Other Guys", "The Avengers", "Napoleon Dynamite", "Zoolander", "Shaun of the Dead","Whose Line Is It Anyway?"];
+
+console.log(topics[0])
 
 function createButtons() {
 
@@ -14,10 +16,7 @@ function createButtons() {
         var button = $("<button>");
         // Adding multiple classes movie div to button (only one class being applied)
         button.addClass("movie");
-        // button.addClass("btn-info");
-        // button.addClass("m-1");
-
-
+    
         // Adding a data-attribute
         button.attr("data-name", topics[i]);
         // Providing the initial button text
@@ -42,17 +41,37 @@ $("#addMovie").on("click", function (event) {
 
 });
 
+let previews = ["The Office", "Parks and Recreation", "Anchorman",  "The Matrix", "Sherlock Holmes", "Star Wars: Episode IV"]
+function previewGifs() {
+
+    for (var i = 0; i<previews.length; i++) {
+
+    
+        let prevGifOne = previews[i]
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + prevGifOne + "&api_key=zBVYqCxlWQzucELEgm9SniwzfKORwVmQ&limit=1&offset=0&rating=g";
+    
+        // Performing AJAX GET request
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            // able to retrieve data. YES!!
+                console.log(response.data[0].images)
+                let showPrev = response.data[0].images.downsized.url;
+                let gifImage = $("<img>").attr("src", showPrev)
+                gifImage.addClass("prGifSize")
+                let preview = $("#gifPreview")
+                let gifDiv = $("<div class= gifHeadline>")
+                gifDiv.append(gifImage)
+                preview.append(gifDiv);
+    
+              });
+    }
+}
+
 
 function displayTopicGif() {
-// $("<button>").on("click", function () {
-    //able to generate api response with value entry for add movie button
-    // var name = $(movie-input).val().trim();
-
-    // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=zBVYqCxlWQzucELEgm9SniwzfKORwVmQ";
-
-    //Need to figure out way to enact response with buttons displayed
-    //update: Created function to generate response!! 
-    
 
     var name = $(this).attr("data-name");
 
@@ -83,7 +102,7 @@ function displayTopicGif() {
 
                 movieTDiv.append(pRating);
 
-                //pull img gif from data
+                //pull img gif still and motion from data
 
                 var gifStillImage = response.data[i].images.downsized_still.url;
                 var gifMotionImage = response.data[i].images.downsized.url;
@@ -101,7 +120,7 @@ function displayTopicGif() {
                 image.addClass("gifImages");
                 image.addClass("m-2")
 
-                //append gifs
+                //show gifs
                 movieTDiv.append(image);
                 $("#movieGif").prepend(movieTDiv);
             }
@@ -111,7 +130,7 @@ function displayTopicGif() {
 
 function gifMotion() {
 
-    // allows precision selection with id for gif state change
+    // allows gif state change when clicked
     var choice = $(this).attr("id");
     choice = "#" + choice
 
@@ -127,8 +146,7 @@ function gifMotion() {
     }
   };
 
-//add listener for elements with class of "movie" 
-//added listener for elements with class of "gifImages"
+//add listener for elements with class of "movie" and "gifImages"
 
 
 
@@ -136,3 +154,4 @@ function gifMotion() {
 $(document).on("click", ".movie", displayTopicGif);
 $(document).on("click", ".gifImages", gifMotion)
 createButtons();
+previewGifs();

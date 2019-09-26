@@ -2,6 +2,7 @@ body{
     background:#e7dabe;
 }
 
+/*form used for input title*/
 form{
     float: right;
     
@@ -17,28 +18,54 @@ input#addMovie{
     border: solid  5px;
     border-radius: 8px;
 }
+
+
+
+
 #movieGif{
-    /* border: solid royalblue 5px; */
     height: auto;
     width: 75%;
     position: absolute;
   
 }
 
-h2{
+h3, h1{
     text-align: center;
     font-family: 'Permanent Marker', cursive;
 }
+h1{
+    font-size: 50px;
+}
 img{
-    width: 250px;
+    width: 251px;
     height: 200px;
 }
 
 div.movies{
     display: inline-block;
-    margin: 5px;
+    margin-top: 35px;
+    margin-right: 15px;
     border: solid black 5px;
+    height: 255px;
     
+    
+}
+
+div.gifHeadline{
+    display: inline-block;
+    border: solid black 5px;
+    border-radius: 14px;
+    width: 200px;
+    height: 150px;
+    margin-bottom: 20px;
+    margin-left: 35px;
+    
+    
+}
+.prGifSize{
+    width: 201px;
+    height: 150px;
+    border-radius: 7px;
 }
 
 
