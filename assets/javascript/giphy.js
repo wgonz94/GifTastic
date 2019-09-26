@@ -1,7 +1,7 @@
 
 var topics = ["The Office", "Friends", "Marvel's Daredevil", "Parks and Recreation", "Anchorman","The Matrix", "Talladega Nights: The Ballad of Ricky Bobby", "Sherlock Holmes", "Star Wars", "Benchwarmers", "Austin Powers","Step-Brothers", "The Other Guys", "The Avengers", "Napoleon Dynamite", "Zoolander", "Shaun of the Dead","Whose Line Is It Anyway?"];
 
-console.log(topics[0])
+console.log(topics[1])
 
 function createButtons() {
 
