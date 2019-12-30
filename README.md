@@ -6,7 +6,7 @@
 https://wgonz94.github.io/GifTastic/
 
 ## What Giftastic Does
-* Generates Buttons from ```javascript topics``` array
+* Generates Buttons from ```topics``` array
 * Creates new buttons from text input 
 * Generates gif images based on selected topic button
 * Display still gifs, but toggle motion state when clicked
